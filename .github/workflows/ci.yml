@@ -26,6 +26,11 @@ jobs:
       - name: Build
         run: dotnet build src/HelloWorld/HelloWorld.csproj --configuration Release --no-restore
 
-      - name: Test
-        run: dotnet test tests/HelloWorld.Tests/HelloWorld.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=test_results.trx"
+      - name: Test(vstest)
+        run: |
+          dotnet build tests/HelloWorld.Tests/HelloWorld.Tests.csproj \
+            --configuration Release
+
+          dotnet vstest "tests/HelloWorld.Tests/bin/Release/net8.0/HelloWorld.Tests.dll" \
+            --Logger:trx
 
