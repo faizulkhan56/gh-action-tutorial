@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Hello World Demo
+        run: echo "👋 Hello, GitHub Actions!"
+
       - name: Setup .NET ${{ matrix.dotnet }}
         uses: actions/setup-dotnet@v3
         with:
